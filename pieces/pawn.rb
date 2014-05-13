@@ -13,7 +13,4 @@ class Pawn < Piece
       [vertical_dir, 1]
     ]
   end
-
-  
-  
 end

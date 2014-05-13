@@ -1,4 +1,5 @@
 require "debugger"
+# encoding: utf-8
 
 require 'pry'
 require './board.rb'
@@ -21,3 +22,4 @@ bishop2 = Bishop.new([4,4], :b, b)
 b[bishop1.position] = bishop1
 b[bishop2.position] = bishop2
 p bishop1.valid_moves
+p "\u2654"
