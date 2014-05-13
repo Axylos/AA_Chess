@@ -26,10 +26,10 @@ class SlidingPiece < Piece
     
     if self.move_dirs.include?(:diagonal)
       possible_moves_right = (-7..7).map { |diag| [(cur_row - diag), (cur_col + diag)] }
-      valid_moves_right = possible_moves_right.select { |row,col| (0..7).include?(col && row) }
+      valid_moves_right = possible_moves_right.select { |row,col| (0..7).include?(col) && (0..7).include?(row) }
 
       possible_moves_left = (-7..7).map { |diag| [(cur_row + diag), (cur_col + diag)] }
-      valid_moves_left = possible_moves_left.select { |row,col| (0..7).include?(col && row) }
+      valid_moves_left = possible_moves_left.select { |row,col| (0..7).include?(col) && (0..7).include?(row) }
 
       output += (valid_moves_right + valid_moves_left)
     end

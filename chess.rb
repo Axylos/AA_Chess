@@ -1,3 +1,5 @@
+require "debugger"
+
 require 'pry'
 require './board.rb'
 require './piece.rb'
