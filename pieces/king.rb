@@ -10,7 +10,5 @@ class King < SteppingPiece
     [-1,-1]
   ]
 
-  def initialize(position, player_color)
-    super(position, player_color)
-  end
+  
 end

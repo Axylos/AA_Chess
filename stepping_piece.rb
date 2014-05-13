@@ -1,5 +1,8 @@
 class SteppingPiece < Piece
   
+  def initialize(position, color)
+    @position = position
+    @color = color
   def moves
     
     cur_row = self.position[0]
