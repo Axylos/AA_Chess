@@ -10,8 +10,8 @@ class King < SteppingPiece
     [-1,-1]
   ]
 
-  def initialize(position, color)
-    super(position, color)
+  def initialize(position, color, board)
+    super(position, color, board)
     @move_dirs = DELTAS
   end
   

@@ -1,7 +1,7 @@
 class Pawn < Piece
 
-  def initialize(position, player_color)
-    super(position, player_color)
+  def initialize(position, player_color, board)
+    super(position, player_color, board)
     @move_dirs = get_move_dirs
   end
   
@@ -13,6 +13,7 @@ class Pawn < Piece
       [vertical_dir, 1]
     ]
   end
+
   
   
 end

@@ -8,6 +8,6 @@ class Board
   end
   
   def occupied?(pos)
-    @grid[pos] != nil
+    self[pos[0]] != nil
   end
 end
