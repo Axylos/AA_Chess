@@ -5,6 +5,17 @@ class Pawn < Piece
     @move_dirs = get_move_dirs
   end
   
+ 
+  
+  def moves
+    get_move_dirs.map do |move|
+      x, y = move
+      [x + @position[0], y + @position[1]] 
+    end
+  end
+  
+  private 
+  
   def get_move_dirs
     vertical_dir = player_color == :black ? 1 : -1
     moves = [
@@ -12,13 +23,6 @@ class Pawn < Piece
       [vertical_dir, -1],
       [vertical_dir, 1]
     ]
-  end
-  
-  def moves
-    get_move_dirs.map do |move|
-      x, y = move
-      [x + @position[0], y + @position[1]] 
-    end
   end
   
   def valid_moves

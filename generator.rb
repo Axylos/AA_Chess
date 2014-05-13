@@ -6,6 +6,8 @@ module Generator
     end
   end
 
+  private 
+  
   def make_pawn_row(color)
     row = color == :black ? 1 : 6
     8.times do |col|
