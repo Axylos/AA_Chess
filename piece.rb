@@ -20,6 +20,10 @@ class Piece
     no_friendly_fire
   end
   
+  def move_to(pos)
+    @position = pos
+  end
+  
   def black?
     @player_color == :black
   end
@@ -28,4 +32,7 @@ class Piece
     @player_color == :white
   end
   
+  def can_move_to?(end_pos)
+    self.valid_moves.include?(end_pos)
+  end   
 end 

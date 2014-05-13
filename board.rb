@@ -3,7 +3,6 @@ require './display.rb'
 
 class Board
   include Display
-  
 
   def initialize
     @grid = Array.new(8) { Array.new(8) {nil} }
@@ -20,6 +19,15 @@ class Board
   
   def occupied?(pos)
     self[pos] != nil
+  end
+  
+  def move(start, end_pos)
+    raise "No piece in that position!" if self[start].nil?
+    raise "Invalid move!" if !(self[start].can_move_to?(end_pos))
+    piece = self[start]
+    piece.move_to(end_pos)
+    self[end_pos] = piece
+    self[start] = nil
   end
   
   def generate_start_board
