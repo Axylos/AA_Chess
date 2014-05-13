@@ -2,19 +2,18 @@ class SlidingPiece < Piece
   def valid_moves
     
   end
-   
+     
   def moves
     output = []
     
     cur_row = self.position[0]
     cur_col = self.position[1]
     
-    #REFACTOR THIS
     if self.move_dirs.include?(:horizontal)
       possible_moves = (-7..7).map {|row| [(cur_row + row), cur_col] }
       valid_moves = possible_moves.select{ |row| (0..7).include?(row[0]) }
   
-      output += rows
+      output += valid_moves
     end
     
     if self.move_dirs.include?(:vertical)

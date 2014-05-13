@@ -7,6 +7,7 @@ require './sliding_piece.rb'
 require './stepping_piece.rb'
 require './pieces/rook.rb'
 require './pieces/bishop.rb'
+require './pieces/queen.rb'
 
 
 
