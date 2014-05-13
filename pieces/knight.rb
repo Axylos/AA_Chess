@@ -11,4 +11,8 @@ class Knight < SteppingPiece
     [-1, -2]
   ]
   
+  def initialize(position, color)
+    super(position, color)
+    @move_dirs = DELTAS
+  end
 end
