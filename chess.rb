@@ -8,12 +8,4 @@ require './stepping_piece.rb'
 require './pieces/rook.rb'
 require './pieces/bishop.rb'
 require './pieces/queen.rb'
-
-
-
-
-x = 2
-
-
-
-rook = Rook.new([3,3], :black)
+require './pieces/king.rb'
