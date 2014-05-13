@@ -15,7 +15,5 @@ require './pieces/knight.rb'
 require './pieces/pawn.rb'
 
 
-
-
 b = Board.new
 b.print_board

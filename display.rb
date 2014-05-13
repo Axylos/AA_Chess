@@ -19,8 +19,8 @@ module Display
   }
   
   def print_board  
-    
-    puts "   0 1 2 3 4 5 6 7"
+    puts
+    puts "  0 1 2 3 4 5 6 7"
     @grid.each_with_index do |row, index|
       pretty_row = row.map.with_index do |tile, col_index|
         if tile.nil?
@@ -37,12 +37,12 @@ module Display
       end 
       
       print index
-      print "  "
+      print " "
       puts pretty_row.join("|")
       #puts
       
     end
-    
+    puts
   end
   
   
