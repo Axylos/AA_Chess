@@ -17,5 +17,5 @@ require './pieces/pawn.rb'
 
 b = Board.new
 b.print_board
-b.move([7,1],[5,2])
+b.move([6,1],[5,1])
 b.print_board
