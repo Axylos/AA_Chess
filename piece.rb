@@ -7,4 +7,8 @@ class Piece
     @player_color = player_color
   end
   
+  def valid_moves
+    self.moves.select { |row, col| (0..7).include?(col) && (0..7).include?(row) }
+  end
+  
 end 
