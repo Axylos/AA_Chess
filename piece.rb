@@ -20,4 +20,12 @@ class Piece
     no_friendly_fire
   end
   
+  def black?
+    @player_color == :black
+  end
+  
+  def white?
+    @player_color == :white
+  end
+  
 end 

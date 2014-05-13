@@ -1,5 +1,6 @@
-require "debugger"
 # encoding: utf-8
+
+require "debugger"
 
 require 'pry'
 require './board.rb'
@@ -17,9 +18,4 @@ require './pieces/pawn.rb'
 
 
 b = Board.new
-bishop1 = Bishop.new([2,2], :b, b)
-bishop2 = Bishop.new([4,4], :b, b)
-b[bishop1.position] = bishop1
-b[bishop2.position] = bishop2
-p bishop1.valid_moves
-p "\u2654"
+b.print_board
