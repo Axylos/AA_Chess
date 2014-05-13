@@ -16,12 +16,14 @@ require './pieces/pawn.rb'
 
 
 b = Board.new
-b.print_board
+#b.print_board
 
 b.move([6,1],[5,1])
-b.print_board
-b.move([1, 2], [2, 2])
-b.move([2, 2], [3, 2])
-b.move([3, 2], [4,3])
+#b.print_board
+b.move([7,6], [5, 5])
+b.move([5, 5], [3, 4])
+b.move([3, 4], [1,5])
+b.move([1, 5], [0, 3])
+b.move([0, 3], [2, 2])
 
 b.print_board

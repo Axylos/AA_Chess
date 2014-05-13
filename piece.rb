@@ -33,6 +33,9 @@ class Piece
   end
   
   def can_move_to?(end_pos)
+    [] if @player_color
     self.valid_moves.include?(end_pos)
   end   
+  
+ 
 end 
