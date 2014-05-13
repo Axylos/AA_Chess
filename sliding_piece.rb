@@ -1,27 +1,37 @@
-class SlidingPiece < Piece  
+class SlidingPiece < Piece 
+  def valid_moves
+    
+  end
+   
   def moves
     output = []
+    
+    cur_row = self.position[0]
+    cur_col = self.position[1]
+    
+    #REFACTOR THIS
     if self.move_dirs.include?(:horizontal)
-      x_coors = (-7..7).map {|x_coor| [(self.position[0] + x_coor), self.position[1]] }
-        .select{ |x_coor| (0..7).include?(x_coor[0]) }
-      output += x_coors
+      possible_moves = (-7..7).map {|row| [(cur_row + row), cur_col] }
+      valid_moves = possible_moves.select{ |row| (0..7).include?(row[0]) }
+  
+      output += rows
     end
     
     if self.move_dirs.include?(:vertical)
-      y_coors = (-7..7).map {|y_coor| [self.position[0], (self.position[1] + y_coor)] }
-        .select{ |y_coor| (0..7).include?(y_coor[1]) }
-        output += y_coors
+      possible_moves = (-7..7).map {|col| [cur_row, (cur_col + col)] }
+      valid_moves = possible_moves.select{ |col| (0..7).include?(col[1]) }
+      
+      output += valid_moves
     end  
     
     if self.move_dirs.include?(:diagonal)
-      diag_right = (-7..7).map { |diag_coor| [(self.position[0] - diag_coor), (self.position[1] + diag_coor)] }
-      .select { |diag_coor| (0..7).include?(diag_coor[1]) && (0..7).include?(diag_coor[0]) }
-      output += diag_right
-      
-      diag_left = (-7..7).map { |diag_coor| [(self.position[0] + diag_coor), (self.position[1] + diag_coor)] }
-      .select { |diag_coor| (0..7).include?(diag_coor[1]) && (0..7).include?(diag_coor[0]) }
-      output += diag_left
+      possible_moves_right = (-7..7).map { |diag| [(cur_row - diag), (cur_col + diag)] }
+      valid_moves_right = possible_moves_right.select { |row,col| (0..7).include?(col && row) }
 
+      possible_moves_left = (-7..7).map { |diag| [(cur_row + diag), (cur_col + diag)] }
+      valid_moves_left = possible_moves_left.select { |row,col| (0..7).include?(col && row) }
+
+      output += (valid_moves_right + valid_moves_left)
     end
 
     output.delete(self.position)
