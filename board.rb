@@ -52,9 +52,6 @@ class Board
     own_pieces.each do |piece|
       start_position = piece.position
       piece.valid_moves.each do |end_position|
-        if !(moves_into_check?(start_position, end_position))
-          p "#{start_position}, #{end_position}"
-        end
         return false if !(moves_into_check?(start_position, end_position))
       end
     end
@@ -72,7 +69,6 @@ class Board
   def is_color_in_check?(color, board)
     pieces = other_pieces(color)
     king_pos = board.find_king(color)
-    
     pieces.any? { |piece| piece.can_move_to?(king_pos) }
   end
   

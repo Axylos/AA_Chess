@@ -26,6 +26,7 @@ class Game
       
       break if @board.checkmate?(@current_player.player_color)
     end
+    @current_player = @current_player == @player1 ? @player2 : @player1
     puts "Game Over: #{@current_player.player_color} Won!"
   end
   
@@ -39,7 +40,11 @@ class Game
     if @board[start_pos].player_color != @current_player.player_color
       raise "Nice Try!  Move your own pieces."
     end
+    other_color = @current_player.player_color == :white ? :black : :white
     
     @board.move(start_pos, end_pos)
+    
+    puts "Check!" if @board.is_color_in_check?(other_color, board)
+    
   end
 end

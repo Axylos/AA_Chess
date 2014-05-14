@@ -22,3 +22,4 @@ p1 = Player.new
 p2 = Player.new
 g = Game.new(p1, p2, b)
 g.run
+
