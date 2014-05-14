@@ -20,25 +20,25 @@ module Display
   
   def print_board  
     puts
-    puts "  0 1 2 3 4 5 6 7"
+    puts "   0  1  2  3  4  5  6  7"
     @grid.each_with_index do |row, index|
       pretty_row = row.map.with_index do |tile, col_index|
         if tile.nil?
-          place = "_"
+          place = "   "
           
         else
           if tile.black?
-            place = BLACK[tile.class.to_s.to_sym]
+            place = " #{BLACK[tile.class.to_s.to_sym]} "
           else
-            place = WHITE[tile.class.to_s.to_sym]
+            place = " #{WHITE[tile.class.to_s.to_sym]} "
           end
         end
-        place.colorize(index, col_index)
+        place.colorize_bg(index, col_index)
       end 
       
       print index
       print " "
-      puts pretty_row.join("|")
+      puts pretty_row.join
       #puts
       
     end
@@ -76,11 +76,11 @@ class String
   end
   
   
-  def colorize(row, index)
+  def colorize_bg(row, index)
     ctr = row.odd? ? true : false
     ctr = !ctr if index.odd?
       
-    ctr ? self.bg_gray : self
+    ctr ? self.bg_gray : self.bg_red
   end
 end
   

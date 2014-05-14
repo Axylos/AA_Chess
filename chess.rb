@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 require "debugger"
-
+require 'colorize'
 require 'pry'
 require './board.rb'
 require './piece.rb'
