@@ -14,11 +14,7 @@ class King < SteppingPiece
 
   def initialize(position, color, board)
     super(position, color, board)
-    @move_dirs = [ 
-                    :horizontal, 
-                    :vertical,
-                    :diagonal, 
-                  ]
+    @move_dirs = DELTAS
   end
   
 end

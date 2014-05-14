@@ -12,7 +12,6 @@ class Pawn < Piece
     end
   end
   
-  private 
   
   def get_move_dirs
     vertical_dir = player_color == :black ? 1 : -1
@@ -41,6 +40,8 @@ class Pawn < Piece
       end
     end
     
-    valids    
+    valids.reject! { |move| @board.occupied?(move) && move[1] == @position[1] }
+    valids.select { |x,y| x.between?(0,7) && y.between?(0,7)}
+      
   end
 end

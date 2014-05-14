@@ -13,7 +13,12 @@ require './pieces/queen.rb'
 require './pieces/king.rb'
 require './pieces/knight.rb'
 require './pieces/pawn.rb'
+require './player.rb'
+require './game.rb'
 
 
 b = Board.new
-b.print_board
+p1 = Player.new
+p2 = Player.new
+g = Game.new(p1, p2, b)
+g.run

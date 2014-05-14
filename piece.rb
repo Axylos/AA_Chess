@@ -47,9 +47,7 @@ class Piece
   def dup(new_board)
     self.class::new(self.position, self.player_color, new_board)
   end
-  
-  private 
-  
+    
   def valid_moves
     moves_on_board = self.moves.select do |row,col| 
       (0..7).include?(col) && (0..7).include?(row) 

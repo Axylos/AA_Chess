@@ -46,38 +46,56 @@ class Board
     self[end_pos] = start_piece
     self[start] = nil
   end
-
-  def moves_into_check?(move)
-    own_color = self[move[0]].player_color
+  
+  def checkmate?(color)
+    own_pieces = own_pieces(color)
+    own_pieces.each do |piece|
+      start_position = piece.position
+      piece.valid_moves.each do |end_position|
+        if !(moves_into_check?(start_position, end_position))
+          p "#{start_position}, #{end_position}"
+        end
+        return false if !(moves_into_check?(start_position, end_position))
+      end
+    end
+    true
+  end
+      
+  def moves_into_check?(start, end_pos)
+    own_color = self[start].player_color
     new_board = self.deep_dup
-    new_board.move move
-    new_board.is_color_in_check?(own_color)
+    new_board.move(start, end_pos)
+    new_board.is_color_in_check?(own_color, new_board)
+    
   end
   
-  def is_color_in_check?(color)
+  def is_color_in_check?(color, board)
     pieces = other_pieces(color)
-    king_pos = find_king(color)
-    pieces.any? { |piece| piece.valid_moves.include?(king_pos) }
+    king_pos = board.find_king(color)
+    
+    pieces.any? { |piece| piece.can_move_to?(king_pos) }
   end
   
   def find_king(color)
     king = @pieces_on_board.select do |piece| 
       piece.is_a?(King) && piece.player_color == color
     end
-    king.position
+    king.last.position #Don't change: needs last to get new_grid kind_pos
   end
-
+  
+  def own_pieces(color)
+    @pieces_on_board.select { |piece| piece.player_color == color }
+  end
+  
   def other_pieces(color)
     @pieces_on_board.select { |piece| piece.player_color != color }
   end
   
   def deep_dup
     new_board = Board.new
-  
     old_grid = self.grid
   
     new_grid = grid_dup(old_grid, new_board)
-    
     new_board.grid = new_grid
     
     new_board
@@ -91,13 +109,11 @@ class Board
       if el.is_a?(Array)
         grid_dup(el, new_board)
       else
-        if el.nil?
-          nil 
-       else
-         el.dup(new_board) 
-       end
-     end
+        el.nil? ? nil : el.dup(new_board)
+      end
+     
     end
+    
   end
   
 end
