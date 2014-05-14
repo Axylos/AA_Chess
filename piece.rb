@@ -16,6 +16,15 @@ class Piece
     @position = position
     @player_color = player_color
     @board = board
+    puts_self_on_board
+  end
+  
+  def puts_self_on_board
+    @board.add_piece_to_board(self)
+  end
+  
+  def remove_from_board
+    @board.remove_piece_from_board(self)
   end
   
   def move_to(pos)
@@ -34,6 +43,10 @@ class Piece
     #[] if @player_color
     valid_moves.include?(end_pos)
   end   
+  
+  def dup(new_board)
+    self.class::new(self.position, self.player_color, new_board)
+  end
   
   private 
   

@@ -16,22 +16,4 @@ require './pieces/pawn.rb'
 
 
 b = Board.new
-#b.print_board
-
-#b.move([6,1],[5,1])
-#b.print_board
-#b.move([7,6], [5, 5])
-#b.move([5, 5], [3, 4])
-#b.move([3, 4], [1,5])
-#b.move([7,2],[5,0])
-#b.move([5,0], [1,4])
-#b.move([6,4], [4,4])
-#pawn = b[[6, 1]]
-#p pawn.position
-b.print_board
-b.move([6,1], [4,1])
-
-
-b.print_board
-b.move([4,1], [2,1])
 b.print_board
