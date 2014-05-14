@@ -1,109 +1,32 @@
+require "matrix"
+
 class SlidingPiece < Piece 
   
-=begin   
-  #beginning of refactor
-  def pos_horizontal_coord(offset)
+  def compute_moves(move)
+    moves = []
+    current_move = self.position
     
-  end
-  
-  def neg_horizontal_coord(offset)
-    [cur_row, cur_col - offset]
-  end
-  
-  def horizontal_coord
-    pos = Proc.new { |offset| [cur_row, cur_col + offset] }
-    neg = Proc.new { |offset| [cur_row, cur_col - offset] }
+    possible_move = [Vector[move] + Vector[current_move]].map { |a, b| [a.to_i, b.to_i]}
     
-    calculate_moves(pos, neg)
+    moves << possible_move
+     if @board.occupied?(possible_move) || moves.count >= 7
+       return moves
+     end
   end
   
-  def calculate_moves(&pos_coor, &neg_coor)
-    range.each do |offset|
-      coordinate = pos_coor.call(offset)
-      output << coordinate
-      break if @board.occupied?(coordinate)
-    end
-    
-    range.each do |offset|
-      coordinate = neg_coor.call(offset)
-      output << coordinate
-      break if @board.occupied?(coordinate)
-    end
-  end
-  
-  #end of refactor
-=end       
   def moves
     output = []
     
-    cur_row = self.position[0]
-    cur_col = self.position[1]
-    
-    range = (1..7)
     
     
-        
-    if self.move_dirs.include?(:horizontal)     
-      range.each do |offset|
-        coordinate = [cur_row, cur_col + offset]
-        output << coordinate
-        break if @board.occupied?(coordinate)
-      end
+    moves =  self.move_dirs.map { |direction| Piece::DELTAS[direction] }
+    moves.each do |move|
       
-      range.each do |offset|
-        coordinate = [cur_row, cur_col - offset]
-        output << coordinate
-        break if @board.occupied?(coordinate)
-      end
+      output << compute_moves(move)
+      
+      
     end
-
-    if self.move_dirs.include?(:vertical)
-      range.each do |offset|
-        coordinate = [cur_row + offset, cur_col]
-        output << coordinate
-        next unless (cur_row + offset).between?(0,7)
-        break if @board.occupied?(coordinate)
-      end
-      
-      range.each do |offset|
-        coordinate = [cur_row - offset, cur_col]
-        output << coordinate
-        next unless (cur_row + offset).between?(0,7)
-        break if @board.occupied?(coordinate)
-      end
-    end  
-  
-    if self.move_dirs.include?(:diagonal)
-      range.each do |offset|
-        coordinate = [cur_row - offset, cur_col + offset]
-        output << coordinate
-        next unless (cur_row + offset).between?(0,7)
-        break if @board.occupied?(coordinate)
-      end
-      
-      range.each do |offset|
-        coordinate = [cur_row + offset, cur_col - offset]
-        output << coordinate
-        next unless (cur_row + offset).between?(0,7)
-        break if @board.occupied?(coordinate)
-      end
-      
-      range.each do |offset|
-        coordinate = [(cur_row + offset), (cur_col + offset)]
-        output << coordinate
-        next unless (cur_row + offset).between?(0,7)
-        break if @board.occupied?(coordinate)
-      end
-      
-      range.each do |offset|
-        coordinate = [(cur_row - offset), (cur_col - offset)]
-        output << coordinate
-        next unless (cur_row + offset).between?(0,7)
-        break if @board.occupied?(coordinate)
-      end
-
-    end
-
+    
     output.delete(self.position)
     return output.uniq
   end

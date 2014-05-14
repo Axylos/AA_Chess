@@ -4,4 +4,5 @@ class Bishop < SlidingPiece
     super(position, player_color, board)
     @move_dirs = [:diagonal]
   end
+  
 end

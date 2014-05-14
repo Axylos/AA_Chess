@@ -1,4 +1,6 @@
 class King < SteppingPiece
+  
+  
   DELTAS = [
     [0,1],
     [1,1],
@@ -12,7 +14,12 @@ class King < SteppingPiece
 
   def initialize(position, color, board)
     super(position, color, board)
-    @move_dirs = DELTAS
+    @move_dirs = [ 
+                    :lateral,  
+                    :vertical,
+                    :diagonal, 
+                    :limit 
+                  ]
   end
   
 end

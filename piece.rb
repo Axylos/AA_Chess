@@ -1,5 +1,15 @@
 class Piece    
   
+  DELTAS = { 
+              :horizontal => [ [0, 1], [0, -1] ],
+  
+              :vertical => [ [1, 0], [-1, 0] ],
+  
+              :diagonal => [ [1, 1], [-1, -1 ], [1, -1], [-1, 1] ] 
+              
+            }
+  
+  
   attr_reader :move_dirs, :position, :player_color
   
   def initialize(position, player_color, board)
