@@ -6,7 +6,8 @@ class SlidingPiece < Piece
     moves = []
     current_move = self.position
     
-    possible_move = [Vector[move] + Vector[current_move]].map { |a, b| [a.to_i, b.to_i]}
+    #possible_move = [Vector[move] + Vector[current_move]].map { |a, b| [a.to_i, b.to_i]}
+    possible_move = [move[0] + current_move[0], move[1] + current_move[1]]
     
     moves << possible_move
      if @board.occupied?(possible_move) || moves.count >= 7
@@ -20,10 +21,10 @@ class SlidingPiece < Piece
     
     
     moves =  self.move_dirs.map { |direction| Piece::DELTAS[direction] }
-    moves.each do |move|
-      
-      output << compute_moves(move)
-      
+    moves.each do |row|
+      row.each do |move|
+        output << compute_moves(move)
+      end
       
     end
     
