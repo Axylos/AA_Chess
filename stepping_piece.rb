@@ -1,7 +1,5 @@
 class SteppingPiece < Piece
   
-  #HORIZONTAL_DELTAS = [ [0, 1], [0, -1] ]
-  
   def moves
     
     cur_row = self.position[0]
