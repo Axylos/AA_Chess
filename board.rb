@@ -97,8 +97,6 @@ class Board
     new_board
   end
 
-  
-  
   def grid_dup(old_grid, new_board)
     old_grid.map do |el|
       
